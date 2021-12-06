@@ -82,6 +82,7 @@ the same applies to `.keys()` - here the list of keys also have the decoded args
 
 In the first example we are querying a double-map, so we supply 1 argument. No arguments on double-maps will be very costly, retrieving all the eras and associated entries. In the same way as above we can simply do `.keys(activeEra.index): StorageKey[]` to retrieve all the keys here, including the individual keys args (available on maps with decodable hashing functions) -
 
+
 ```js
 // retrieve all the nominator keys
 const keys = await api.query.staking.nominators.keys();
@@ -91,6 +92,9 @@ const nominatorIds = keys.map(({ args: [nominatorId] }) => nominatorId);
 
 console.log('all nominators:', nominatorIds.join(', '));
 ```
+
+There is also the `keysAt(<hash>)` and `entriesAt(<hash>)` methods for another source of single-shot calls to retrieve lists from a particular block. Note, that the state pruning limits described above also apply here.
+
 
 ## State entries
 
